@@ -8,16 +8,11 @@ const AppTitle = styled.h1``;
 
 export interface Props extends FilterListProps {
    title: string
-   defaults?: {
-      [key: string]: string | null
-   }
 }
 
-export const App: React.FC<Props> = ({title, defaults, filters}) => {
+export const App: React.FC<Props> = ({title, filters}) => {
    return <AppWrapper>
-      <FilterAppDataProvider defaults={defaults}>
          <AppTitle>{title}</AppTitle>
          <FilterList filters={filters}/>
-      </FilterAppDataProvider>
    </AppWrapper>
 }

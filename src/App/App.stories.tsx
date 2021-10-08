@@ -1,13 +1,18 @@
 import React from 'react';
-import { Meta } from '@storybook/react';
-import { App } from './App';
+import {Meta} from '@storybook/react';
+import {App} from './App';
+import {FilterAppDataProvider} from "./AppContext";
 
 export default {
    title: "App",
    component: App,
 } as Meta
 
-const Template = (args) => <App {...args} />;
+const Template = ({title, filters, defaults}) => (
+   <FilterAppDataProvider defaults={defaults}>
+      <App title={title} filters={filters}/>
+   </FilterAppDataProvider>
+);
 
 export const BasicRender = Template.bind();
 BasicRender.args = {
@@ -19,10 +24,10 @@ BasicRender.args = {
          options: [{
             name: "Red",
             value: "red"
-         },{
+         }, {
             name: "Blue",
             value: "blue"
-         },{
+         }, {
             name: "Green",
             value: "green"
          }]
@@ -33,10 +38,10 @@ BasicRender.args = {
          options: [{
             name: "Small",
             value: "small"
-         },{
+         }, {
             name: "Medium",
             value: "medium"
-         },{
+         }, {
             name: "Large",
             value: "large"
          }]
