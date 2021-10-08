@@ -8,7 +8,7 @@ const EXTERNALS = {
 }
 
 export default {
-   input: 'src/index.tsx',
+   input: 'src/index.ts',
    output: {
       dir: 'dist',
       format: 'iife',

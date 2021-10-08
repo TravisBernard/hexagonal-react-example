@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FilterApp, FilterAppDataProvider } from '../FilterApp'
+import { FilterApp, FilterAppDataProvider } from '../../../../applications/filter/src/FilterApp'
 import { Breadcrumbs } from './Breadcrumbs'
 
 const Wrapper = styled.div``;
