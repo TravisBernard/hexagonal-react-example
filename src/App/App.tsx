@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
-import { FilterAppDataProvider } from "./AppContext";
-import {FilterList, Props as FilterListProps} from "../FilterList";
+import {FilterList, FilterListProps} from "../FilterList";
 
 const AppWrapper = styled.div``;
 const AppTitle = styled.h1``;

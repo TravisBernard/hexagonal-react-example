@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import styled from 'styled-components';
-import {Filter, Props as filterProp} from "../Filter";
+import {Filter, FilterProps} from "../Filter";
 import { PrivateAppContext } from "../App/AppContext";
 
 const FilterListContainer = styled.div``;
@@ -13,11 +13,11 @@ const FilterListClearBtn = styled.button`
    padding: 0;
 `
 
-export interface Props {
-   filters: filterProp[]
+export interface FilterListProps {
+   filters: FilterProps[]
 }
 
-export const FilterList: React.FC<Props> = ({filters}) => {
+export const FilterList: React.FC<FilterListProps> = ({filters}) => {
    const { clearAllFilters } = useContext(PrivateAppContext);
 
    const onClear = () => {
