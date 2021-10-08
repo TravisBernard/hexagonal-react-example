@@ -34,10 +34,7 @@ const filterActiveFilters = (selections) => (filter) => {
 const mapToNameValue = (selections) => (filter) => {
    const title = filter.title;
    const fieldName = filter.fieldName;
-   const selectedOption = filter.options.filter(opt => {
-      console.log(filter.fieldName, opt, selections)
-      return opt.value === selections[filter.fieldName]
-   });
+   const selectedOption = filter.options.filter(opt => opt.value === selections[filter.fieldName]);
    const value = selectedOption[0].name
    return {title, fieldName, value}
 }
