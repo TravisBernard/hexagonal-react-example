@@ -16,14 +16,16 @@ export interface ContextType {
 
 export const PrivateAppContext = createContext({
    selections: {},
-   setSelection: () => {console.warn('SelectionsProvider not included in DOM')}
-} as ContextType );
+   setSelection: () => {
+      console.warn('PrivateContextProvider not included in DOM')
+   }
+} as ContextType);
 
 function selectionsReducer(selections: SelectionType, change: SelectionType) {
-   return { ...selections, ...change}
+   return {...selections, ...change}
 }
 
-export const SelectionsProvider: React.FC<ProviderProps> = ({defaults = {}, children}) => {
+export const PrivateContextProvider: React.FC<ProviderProps> = ({defaults = {}, children}) => {
    const [selections, setSelection] = useReducer(selectionsReducer, defaults);
 
    return <PrivateAppContext.Provider value={{selections, setSelection}}>
