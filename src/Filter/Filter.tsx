@@ -1,6 +1,6 @@
 import React, {ChangeEvent, useContext} from 'react'
 import styled from "styled-components";
-import { PrivateAppContext, ContextType } from "../App/AppContext";
+import { FilterAppPrivateContext, ContextType } from "../FilterApp/FilterAppContext";
 
 const FilterTitle = styled.h2``
 const FilterClearBtn = styled.button`
@@ -32,7 +32,7 @@ export interface FilterProps {
 
 export const Filter: React.FC<FilterProps> = ({title, fieldName, options}) => {
 
-   const {selections, setFilter, clearFilter} = useContext(PrivateAppContext)
+   const {selections, setFilter, clearFilter} = useContext(FilterAppPrivateContext)
 
    const onSelect = (e: ChangeEvent<HTMLInputElement>) => {
       setFilter({[fieldName]: e.target.value})

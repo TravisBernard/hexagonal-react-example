@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { App, FilterAppDataProvider } from '../App'
+import { FilterApp, FilterAppDataProvider } from '../FilterApp'
 import { Breadcrumbs } from './Breadcrumbs'
 
 const Wrapper = styled.div``;
@@ -49,7 +49,7 @@ export const SuperApp: React.FC<{}> = () => {
       <AppTitle>My Cool React App</AppTitle>
       <FilterAppDataProvider defaults={filterDetails.defaults}>
          <Breadcrumbs filters={filterDetails.filters} />
-         <App title={"Filter Products By:"} filters={filterDetails.filters}/>
+         <FilterApp title={"Filter Products By:"} filters={filterDetails.filters}/>
       </FilterAppDataProvider>
    </Wrapper>
 }

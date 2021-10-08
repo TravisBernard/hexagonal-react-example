@@ -20,7 +20,7 @@ function warnMissingProvider() {
    console.warn('FilterAppDataProvider not included in DOM')
 };
 
-export const PrivateAppContext = createContext({
+export const FilterAppPrivateContext = createContext({
    selections: {},
    setFilter: warnMissingProvider,
    clearFilter: warnMissingProvider,
@@ -47,7 +47,7 @@ export const FilterAppDataProvider: React.FC<PrivateProviderProps> = ({defaults 
       }
    }
 
-   return <PrivateAppContext.Provider value={dataLayer}>
+   return <FilterAppPrivateContext.Provider value={dataLayer}>
       {children}
-   </PrivateAppContext.Provider>
+   </FilterAppPrivateContext.Provider>
 }

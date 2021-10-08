@@ -9,7 +9,7 @@ export interface Props extends FilterListProps {
    title: string
 }
 
-export const App: React.FC<Props> = ({title, filters}) => {
+export const FilterApp: React.FC<Props> = ({title, filters}) => {
    return <AppWrapper>
          <AppTitle>{title}</AppTitle>
          <FilterList filters={filters}/>

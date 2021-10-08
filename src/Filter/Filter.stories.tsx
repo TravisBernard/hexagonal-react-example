@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
 import { Filter } from './Filter';
-import { FilterAppDataProvider } from "../App/AppContext";
+import { FilterAppDataProvider } from "../FilterApp/FilterAppContext";
 
 export default {
    title: "Filter",

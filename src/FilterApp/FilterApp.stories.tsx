@@ -1,16 +1,16 @@
 import React from 'react';
 import {Meta} from '@storybook/react';
-import {App} from './App';
-import {FilterAppDataProvider} from "./AppContext";
+import {FilterApp} from './FilterApp';
+import {FilterAppDataProvider} from "./FilterAppContext";
 
 export default {
    title: "App",
-   component: App,
+   component: FilterApp,
 } as Meta
 
 const Template = ({title, filters, defaults}) => (
    <FilterAppDataProvider defaults={defaults}>
-      <App title={title} filters={filters}/>
+      <FilterApp title={title} filters={filters}/>
    </FilterAppDataProvider>
 );
 

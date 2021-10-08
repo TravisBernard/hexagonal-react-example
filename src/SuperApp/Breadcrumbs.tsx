@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
-import { useApp } from '../App'
+import { useFilterApp } from '../FilterApp'
 
 const BreadcrumbList = styled.ul`
    margin: 0;
@@ -40,7 +40,7 @@ const mapToNameValue = (selections) => (filter) => {
 }
 
 export const Breadcrumbs: React.FC<Props> = ({filters}) => {
-   const {getSelections, clearFilter} = useApp();
+   const {getSelections, clearFilter} = useFilterApp();
    const selections = getSelections();
 
    let activeFilters = filters.filter(filterActiveFilters(selections));
