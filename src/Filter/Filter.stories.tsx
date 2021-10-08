@@ -10,6 +10,7 @@ export default {
 
 const Template = (args) => <FilterAppDataProvider><Filter {...args} /></FilterAppDataProvider>;
 
+// @ts-ignore
 export const BasicRender = Template.bind();
 BasicRender.args = {
    title: "Colour",
