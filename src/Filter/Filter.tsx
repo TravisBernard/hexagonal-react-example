@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled from "styled-components";
 
 const FilterTitle = styled.h2``
@@ -12,23 +12,29 @@ const FilterOpt = styled.li`
 const FilterOptLabel = styled.label``
 const FilterOptTickbox = styled.input``
 
-interface Props {
+export interface Props {
    title: string
    fieldName: string
    options: [{
       name: string,
       value: string
    }]
-   defaultOption?: string
 }
 
-export const Filter: React.FC<Props> = ({title, fieldName, options, defaultOption}) => {
+export const Filter: React.FC<Props> = ({title, fieldName, options}) => {
+
+   const [selected, setSelected] = useState(options[0].value);
+
+   const onSelect = (e) => {
+      setSelected(e.target.value)
+   }
+
    return <>
       <FilterTitle>{title}</FilterTitle>
       <FilterOptList>{options.map((opt) => {
          const {name, value} = opt;
          return <FilterOpt key={value}>
-            <FilterOptLabel><FilterOptTickbox type={"radio"} name={fieldName} value={value}/>{name}</FilterOptLabel>
+            <FilterOptLabel><FilterOptTickbox type={"radio"} name={fieldName} value={value} checked={value === selected} onChange={onSelect}/>{name}</FilterOptLabel>
          </FilterOpt>
       })}</FilterOptList>
    </>
