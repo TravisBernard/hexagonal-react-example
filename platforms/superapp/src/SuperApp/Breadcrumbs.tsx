@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
-import { useFilterApp } from '../../../../applications/filter/src/FilterApp'
+import { useFilterApp } from 'filter-application'
 
 const BreadcrumbList = styled.ul`
    margin: 0;
