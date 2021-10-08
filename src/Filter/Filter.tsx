@@ -1,5 +1,6 @@
-import React, {useState} from 'react'
+import React, {ChangeEvent, useContext} from 'react'
 import styled from "styled-components";
+import { PrivateAppContext, ContextType } from "../App/AppContext";
 
 const FilterTitle = styled.h2``
 const FilterOptList = styled.ul`
@@ -23,10 +24,14 @@ export interface Props {
 
 export const Filter: React.FC<Props> = ({title, fieldName, options}) => {
 
-   const [selected, setSelected] = useState(options[0].value);
+   const {selections, setSelection} = useContext(PrivateAppContext)
 
-   const onSelect = (e) => {
-      setSelected(e.target.value)
+   const onSelect = (e: ChangeEvent<HTMLInputElement>) => {
+      setSelection({[fieldName]: e.target.value})
+   }
+
+   function isSelected(selections: ContextType['selections'], fieldName: Props['fieldName'], value: Props['options'][0]['value']) {
+      return (fieldName in selections) && selections[fieldName] === value;
    }
 
    return <>
@@ -34,7 +39,7 @@ export const Filter: React.FC<Props> = ({title, fieldName, options}) => {
       <FilterOptList>{options.map((opt) => {
          const {name, value} = opt;
          return <FilterOpt key={value}>
-            <FilterOptLabel><FilterOptTickbox type={"radio"} name={fieldName} value={value} checked={value === selected} onChange={onSelect}/>{name}</FilterOptLabel>
+            <FilterOptLabel><FilterOptTickbox type={"radio"} name={fieldName} value={value} checked={isSelected(selections, fieldName, value)} onChange={onSelect}/>{name}</FilterOptLabel>
          </FilterOpt>
       })}</FilterOptList>
    </>

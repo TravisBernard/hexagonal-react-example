@@ -1,13 +1,15 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
 import { FilterList } from './FilterList';
+import {Filter} from "../Filter";
+import {SelectionsProvider} from "../App/AppContext";
 
 export default {
    title: "FilterList",
    component: FilterList,
 } as Meta
 
-const Template = (args) => <FilterList {...args} />;
+const Template = (args) => <SelectionsProvider><FilterList {...args} /></SelectionsProvider>;
 
 export const BasicRender = Template.bind();
 BasicRender.args = {
