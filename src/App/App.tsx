@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
-import { PrivateContextProvider } from "./AppContext";
+import { FilterAppDataProvider } from "./AppContext";
 import {FilterList, Props as FilterListProps} from "../FilterList";
 
 const AppWrapper = styled.div``;
@@ -15,9 +15,9 @@ export interface Props extends FilterListProps {
 
 export const App: React.FC<Props> = ({title, defaults, filters}) => {
    return <AppWrapper>
-      <PrivateContextProvider defaults={defaults}>
+      <FilterAppDataProvider defaults={defaults}>
          <AppTitle>{title}</AppTitle>
          <FilterList filters={filters}/>
-      </PrivateContextProvider>
+      </FilterAppDataProvider>
    </AppWrapper>
 }

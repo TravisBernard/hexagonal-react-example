@@ -2,14 +2,14 @@ import React from 'react';
 import { Meta } from '@storybook/react';
 import { FilterList } from './FilterList';
 import {Filter} from "../Filter";
-import {PrivateContextProvider} from "../App/AppContext";
+import {FilterAppDataProvider} from "../App/AppContext";
 
 export default {
    title: "FilterList",
    component: FilterList,
 } as Meta
 
-const Template = (args) => <PrivateContextProvider><FilterList {...args} /></PrivateContextProvider>;
+const Template = (args) => <FilterAppDataProvider><FilterList {...args} /></FilterAppDataProvider>;
 
 export const BasicRender = Template.bind();
 BasicRender.args = {

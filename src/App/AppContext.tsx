@@ -1,34 +1,53 @@
-import React, {createContext, useReducer} from 'react';
+import React, {createContext, useReducer, useState} from 'react';
 
 
 interface SelectionType {
    [key: string]: string | null
 }
 
-interface ProviderProps {
+interface PrivateProviderProps {
    defaults?: SelectionType
 }
 
 export interface ContextType {
    selections: SelectionType,
-   setSelection: (a: SelectionType) => void
+   setFilter: (a: SelectionType) => void
+   clearFilter: (a: string) => void
+   clearAllFilters: () => void
 }
+
+function warnMissingProvider() {
+   console.warn('FilterAppDataProvider not included in DOM')
+};
 
 export const PrivateAppContext = createContext({
    selections: {},
-   setSelection: () => {
-      console.warn('PrivateContextProvider not included in DOM')
-   }
+   setFilter: warnMissingProvider,
+   clearFilter: warnMissingProvider,
+   clearAllFilters: warnMissingProvider,
 } as ContextType);
 
 function selectionsReducer(selections: SelectionType, change: SelectionType) {
    return {...selections, ...change}
 }
 
-export const PrivateContextProvider: React.FC<ProviderProps> = ({defaults = {}, children}) => {
-   const [selections, setSelection] = useReducer(selectionsReducer, defaults);
+export const FilterAppDataProvider: React.FC<PrivateProviderProps> = ({defaults = {}, children}) => {
+   const [selections, setSelections] = useState(defaults)
+   const [oldSel, oldSetSel] = useReducer(selectionsReducer, defaults);
 
-   return <PrivateAppContext.Provider value={{selections, setSelection}}>
+   const dataLayer = {
+      selections,
+      setFilter: (change: SelectionType) => setSelections(selectionsReducer(selections, change)),
+      clearFilter:  (key: string) => {
+         const { [key]: _, ...rest } = selections;
+         setSelections({...rest})
+      },
+      clearAllFilters: () => {
+         setSelections({})
+      }
+   }
+
+   return <PrivateAppContext.Provider value={dataLayer}>
       {children}
    </PrivateAppContext.Provider>
 }
