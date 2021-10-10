@@ -1,14 +1,13 @@
-import React from 'react';
-import styled from 'styled-components';
-import { FilterApp, FilterAppDataProvider } from 'filter-application'
-import { Breadcrumbs } from './Breadcrumbs'
+import React, {useCallback} from 'react';
+import ReactDOM from 'react-dom';
+import {FilterApp, FilterAppDataProvider, useFilterApp} from 'filter-application'
 
-const Wrapper = styled.div``;
-const AppTitle = styled.h1`
-   font-size: 4rem;
-`;
+interface Props {
+   onSelectionsChanged: (any) => void
+}
 
-export const SuperApp: React.FC<{}> = () => {
+const Wrapper: React.FC<Props> = ({onSelectionsChanged}) => {
+
    const filterDetails = {
       filters: [
          {
@@ -45,11 +44,17 @@ export const SuperApp: React.FC<{}> = () => {
       }
    }
 
-   return <Wrapper>
-      <AppTitle>My Cool New-Age Platform</AppTitle>
-      <FilterAppDataProvider defaults={filterDetails.defaults}>
-         <Breadcrumbs filters={filterDetails.filters} />
-         <FilterApp title={"Filter Products By:"} filters={filterDetails.filters}/>
-      </FilterAppDataProvider>
-   </Wrapper>
+   const { selections } = useFilterApp();
+
+   useCallback(() => {
+      onSelectionsChanged(selections)
+   }, [selections])
+
+   return <FilterAppDataProvider defaults={filterDetails.defaults}>
+      <FilterApp title={"Filter Products By"} filters={filterDetails.filters} />
+   </FilterAppDataProvider>
+}
+
+export const initializeFilterApp = (domNode, onSelectionsChanged) => {
+   ReactDOM.render(<Wrapper onSelectionsChanged={onSelectionsChanged} />, domNode);
 }

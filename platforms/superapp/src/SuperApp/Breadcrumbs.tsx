@@ -40,8 +40,7 @@ const mapToNameValue = (selections) => (filter) => {
 }
 
 export const Breadcrumbs: React.FC<Props> = ({filters}) => {
-   const {getSelections, clearFilter} = useFilterApp();
-   const selections = getSelections();
+   const {selections, clearFilter} = useFilterApp();
 
    let activeFilters = filters.filter(filterActiveFilters(selections));
    const breadcrumbs = activeFilters.map(mapToNameValue(selections))

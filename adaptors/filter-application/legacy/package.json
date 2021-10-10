@@ -1,16 +1,13 @@
 {
-  "name": "filter-application",
+  "name": "filter-application-legacy-wrapper",
   "version": "1.0.0",
-  "main": "src/index.ts",
+  "main": "src/wrapper.tsx",
   "repository": "git@github.com:TravisBernard/hexagonal-react-example.git",
   "author": "Travis Bernard <travis.bernard@shipperhq.com>",
   "license": "MIT",
   "private": true,
-  "files": [
-    "dist"
-  ],
   "scripts": {
-    "start": "ts-node src/index.ts",
+    "start": "ts-node src/wrapper.tsx",
     "build": "rollup -c",
     "build:watch": "rollup -cw",
     "storybook": "start-storybook -p 6006",
@@ -43,6 +40,7 @@
   "dependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "styled-components": "^5.3.1"
+    "styled-components": "^5.3.1",
+    "filter-application": "*"
   }
 }

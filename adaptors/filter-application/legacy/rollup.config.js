@@ -8,10 +8,10 @@ const EXTERNALS = {
 }
 
 export default {
-   input: 'src/index.ts',
+   input: 'src/wrapper.tsx',
    output: {
       dir: 'dist',
-      format: 'es',
+      format: 'iife',
       globals: EXTERNALS,
       sourcemap: true
    },
