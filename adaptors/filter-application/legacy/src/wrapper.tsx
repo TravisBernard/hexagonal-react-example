@@ -4,9 +4,10 @@ import {FilterApp, FilterAppDataProvider, useFilterApp} from 'filter-application
 
 interface Props {
    onSelectionsChanged: (any) => void
+   onReady?: (any) => any
 }
 
-const Wrapper: React.FC<Props> = ({onSelectionsChanged}) => {
+const Wrapper: React.FC<Props> = ({onSelectionsChanged, onReady}) => {
 
    const filterDetails = {
       filters: [
@@ -44,17 +45,23 @@ const Wrapper: React.FC<Props> = ({onSelectionsChanged}) => {
       }
    }
 
-   const { selections } = useFilterApp();
+   const { selections, clearFilter } = useFilterApp();
 
    useCallback(() => {
       onSelectionsChanged(selections)
    }, [selections])
+
+   if (onReady) {
+      useCallback(() => {
+         onReady({selections, clearFilter})
+      }, [clearFilter])
+   }
 
    return <FilterAppDataProvider defaults={filterDetails.defaults}>
       <FilterApp title={"Filter Products By"} filters={filterDetails.filters} />
    </FilterAppDataProvider>
 }
 
-export const initializeFilterApp = (domNode, onSelectionsChanged) => {
-   ReactDOM.render(<Wrapper onSelectionsChanged={onSelectionsChanged} />, domNode);
+export const initializeFilterApp = (domNode, onSelectionsChanged, onReady) => {
+   ReactDOM.render(<Wrapper onSelectionsChanged={onSelectionsChanged} onReady={onReady} />, domNode);
 }

@@ -1,6 +1,6 @@
 define(["filter-app"], function(initializeFilterApp) {
    const updateFilterWhenSelectionsChange = (newSelections) => {
-      var url = new URL('https://sl.se')
+      var url = new URL('/catalog')
       url.search = new URLSearchParams(newSelections).toString();
 
       fetch(url)

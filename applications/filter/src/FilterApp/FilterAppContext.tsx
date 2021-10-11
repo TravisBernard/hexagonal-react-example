@@ -32,8 +32,7 @@ function selectionsReducer(selections: SelectionType, change: SelectionType) {
 }
 
 export const FilterAppDataProvider: React.FC<PrivateProviderProps> = ({defaults = {}, children}) => {
-   const [selections, setSelections] = useState(defaults)
-   const [oldSel, oldSetSel] = useReducer(selectionsReducer, defaults);
+   const [selections, setSelections] = useState(defaults);
 
    const dataLayer = {
       selections,

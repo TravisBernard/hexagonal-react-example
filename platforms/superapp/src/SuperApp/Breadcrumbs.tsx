@@ -42,10 +42,9 @@ const mapToNameValue = (selections) => (filter) => {
 export const Breadcrumbs: React.FC<Props> = ({filters}) => {
    const {selections, clearFilter} = useFilterApp();
 
-   let activeFilters = filters.filter(filterActiveFilters(selections));
-   const breadcrumbs = activeFilters.map(mapToNameValue(selections))
+   const breadcrumbs = filters.filter(filterActiveFilters(selections)).map(mapToNameValue(selections))
 
-   const onRemove = (filter) => () => clearFilter(filter);
+   const onRemove = (filter: string) => () => clearFilter(filter);
 
    return <BreadcrumbList>
       {breadcrumbs.map(b => <Breadcrumb key={b.title + b.value}>{b.title}: {b.value} <RemoveButton onClick={onRemove(b.fieldName)}>X</RemoveButton></Breadcrumb>)}
